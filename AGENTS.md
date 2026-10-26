@@ -49,7 +49,7 @@ Number the steps for the person ("Step 2 of 8") so they know how far along they 
 
 Explain briefly, in your own words:
 
-- On the days they choose, a scheduled run of you (the AI agent) reads the job boards of 160+ Australian employers
+- On the days they choose, a scheduled run of you (the AI agent) reads the job boards of 150+ Australian employers
   (banks, fintechs, tech companies, government, energy and more). It also searches the web for roles on SEEK,
   LinkedIn, Indeed, recruiter sites and startup boards. Then it sends every new role, together with their profile,
   to **JEV**, a scoring service made by TypeSafe.

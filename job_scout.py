@@ -2,7 +2,7 @@
 """Job scout: collect roles broadly, let JEV score each one against your profile, report the best new matches.
 
 Commands:
-  collect            Fetch every seeded company job board (Greenhouse, Lever, Ashby, SmartRecruiters).
+  collect            Fetch every employer job board in sources.json.
   add-web FILE       Ingest roles found by web search (JSON list) and auto-add any new company boards.
   assess [--dry-run] Send new or changed roles to JEV.
   report             Write the shortlist (Markdown + CSV) to reports/ and print it.
@@ -756,16 +756,6 @@ LABELS = {"experience_match": "experience", "target_fit": "target fit", "enjoyme
           "practicality": "practicality", "career_growth": "growth", "community_impact": "impact"}
 
 
-ACTIVE = ("applied", "interviewing", "offer")
-RECENT_REJECTION_DAYS = 30
-
-
-def applications() -> list[dict]:
-    """Roles already applied for, if the person keeps applications.json."""
-    f = ROOT / "applications.json"
-    return json.loads(f.read_text(encoding="utf-8")) if f.is_file() else []
-
-
 NOISE = {"pty", "ltd", "limited", "inc", "group", "australia", "au"}
 
 
@@ -776,47 +766,12 @@ def _norm(s: str) -> str:
 
 def same_role(company: str, title: str, other_company: str, other_title: str) -> bool:
     """Same title at the same employer, allowing for brand variants: "Optus" matches "Optus (Singtel Group)", and
-    "Premier's Department NSW (Investment NSW)" matches either name."""
+    "Block (Afterpay, Square)" matches "Block"."""
     t = set(_norm(title).split())
     if not t or set(_norm(other_title).split()) != t:
         return False
     names = lambda co: {_norm(n) for n in re.split(r"[()]", co or "")} - {""}
     return any(f" {a} " in f" {b} " or f" {b} " in f" {a} " for a in names(company) for b in names(other_company))
-
-
-def applied_to(job, apps: list[dict]) -> dict | None:
-    """The application matching a job: by job ID, by listing URL, or by company and title."""
-    url = lambda u: (u or "").rstrip("/").lower()
-    for a in apps:
-        if a.get("job_id") == job["id"] or (a.get("url") and url(a["url"]) == url(job["url"])):
-            return a
-        if same_role(job["company"], job["title"], a.get("company", ""), a.get("title", "")):
-            return a
-    return None
-
-
-def applications_section(apps: list[dict], today: datetime) -> list[str]:
-    day = lambda s: datetime.strptime(s, "%Y-%m-%d").replace(tzinfo=today.tzinfo)
-    cutoff = today - timedelta(days=RECENT_REJECTION_DAYS)
-    active = [a for a in apps if a.get("status") in ACTIVE]
-    rejected = [a for a in apps if a.get("status") == "rejected" and a.get("updated") and day(a["updated"]) >= cutoff]
-    if not (active or rejected):
-        return []
-    line = lambda a, what: (f"- **{a['company']}**, {a['title']}: {what}" + (f". {a['note']}" if a.get("note") else ""))
-    L = ["## Your applications", ""]
-    for a in sorted(active, key=lambda a: a.get("updated", ""), reverse=True):
-        waited = (today - day(a["updated"])).days if a.get("updated") else None
-        what = {"applied": "applied", "interviewing": "interviewing", "offer": "offer"}[a["status"]]
-        what += f" {day(a['applied']):%-d %b}" if a["status"] == "applied" and a.get("applied") else ""
-        ago = {0: "today", 1: "yesterday"}.get(waited, f"{waited} days ago")
-        what += f", last update {day(a['updated']):%-d %b} ({ago})" if waited is not None else ""
-        L.append(line(a, what))
-    if rejected:
-        L += ["", f"Rejected in the last {RECENT_REJECTION_DAYS} days:", ""]
-        for a in sorted(rejected, key=lambda a: a["updated"], reverse=True):
-            L.append(line(a, f"rejected {day(a['updated']):%-d %b}"
-                             + (f" (applied {day(a['applied']):%-d %b})" if a.get("applied") else "")))
-    return L + [""]
 
 
 def current_score(r: sqlite3.Row, cfg) -> dict:
@@ -836,9 +791,6 @@ def report(c: sqlite3.Connection) -> Path:
     rows = [r for r in rows if not excluded_employer(r["company"])]
     rows = [current_score(r, cfg) for r in rows]
     rows.sort(key=lambda r: r["score"], reverse=True)
-    apps = applications()
-    applied = [r for r in rows if applied_to(r, apps)]
-    rows = [r for r in rows if not applied_to(r, apps)]
     eligible = [r for r in rows if not r["excluded"] and r["score"] >= cfg["shortlist_threshold"]]
     # A role found again at a new URL or under another brand name gets a new ID, so also match earlier reports by role.
     # Two roles with the same title on one company board are separate vacancies, so that pair doesn't count.
@@ -851,11 +803,11 @@ def report(c: sqlite3.Connection) -> Path:
     seen = lambda r: r["already"] or any(copy(r, s) for s in by_title.get(_norm(r["title"]), []))
     new = [r for r in eligible if not seen(r)][: cfg["shortlist_size"]]
     still_open = [r for r in eligible if r["already"]]
-    today = datetime.now(ZoneInfo("Australia/Sydney"))
+    today = datetime.now(ZoneInfo(cfg.get("schedule", {}).get("timezone") or "Australia/Sydney"))
     stamp = today.strftime("%Y-%m-%d")
     REPORTS.mkdir(exist_ok=True)
 
-    L = [f"# Job scout — {today:%-d %B %Y}", "", *applications_section(apps, today)]
+    L = [f"# Job scout — {today:%-d %B %Y}", "", ]
     if new:
         L += ["## New matches", ""]
         for i, r in enumerate(new, 1):
@@ -872,8 +824,7 @@ def report(c: sqlite3.Connection) -> Path:
         L.append("")
     excluded = sum(1 for r in rows if r["excluded"])
     L += ["---", f"{len(rows)} open roles assessed by JEV in total; {excluded} excluded by hard constraints; "
-          f"{len(eligible)} at or above {cfg['shortlist_threshold']}%"
-          + (f"; {len(applied)} you've applied for left out." if applied else ".")]
+          f"{len(eligible)} at or above {cfg['shortlist_threshold']}%."]
     md = REPORTS / f"{stamp}.md"
     md.write_text("\n".join(L) + "\n", encoding="utf-8")
 

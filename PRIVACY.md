@@ -14,7 +14,7 @@ information goes.
 ## What's kept out of JEV
 
 - `profile.json` doesn't store your name, email, phone number, address, date of birth, LinkedIn link or referees.
-  The agent is told to leave them out when it writes your profile.
+  The agent leaves them out when it writes your profile.
 - As a backstop, `job_scout.py` removes those fields from what it sends to JEV. It also blanks out any email
   address, phone number or web link left in the text, for example from a pasted resume.
 - What JEV does see is the substance of your profile: your experience (including employer names and dates), skills,
