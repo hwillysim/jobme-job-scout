@@ -1,0 +1,17 @@
+{
+  "summary": "Who they are in a few sentences: current or last role, years of experience, strengths and standout results.",
+  "experience": [
+    "Role, employer (years): what they did and what changed because of it, with numbers where they have them.",
+    "Education: degree, institution."
+  ],
+  "skills": "Tools, methods and strengths, in their own words where possible.",
+  "target_roles": "The kinds of roles they want next, and the industries or kinds of organisation they'd like to work in.",
+  "enjoys": "Work that gives them energy, and the parts of past jobs they loved.",
+  "wants": "What they want from the next role and employer: flexibility, pay, team, pace, mission, growth.",
+  "life_goals": "Where they want their career and life to be in 3 to 10 years.",
+  "purpose": "What's important to them and the difference they want their work to make.",
+  "location": "Where they can work, e.g. 'Sydney, hybrid or remote within Australia; not relocating overseas'.",
+  "seniority": "Their level, e.g. '6 years, senior associate moving to team lead'.",
+  "avoid": "Roles, kinds of work or workplaces they don't want, and credentials they don't hold.",
+  "known_gaps": "Honest gaps an employer might notice, so scoring doesn't overrate stretch roles."
+}

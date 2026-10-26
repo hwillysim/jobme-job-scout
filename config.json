@@ -1,0 +1,27 @@
+{
+  "shortlist_threshold": 65,
+  "shortlist_size": 12,
+  "max_jobs_per_run": 5000,
+  "jev_model": "jev-latest",
+  "jev_workers": 8,
+  "constraint_cutoff": 0.75,
+  "weights": {
+    "experience_match": 0.2,
+    "target_fit": 0.2,
+    "enjoyment": 0.15,
+    "practicality": 0.15,
+    "wants_match": 0.1,
+    "career_growth": 0.1,
+    "community_impact": 0.1
+  },
+  "exclude_employers": [],
+  "schedule": {
+    "days": [],
+    "time": "",
+    "timezone": "Australia/Sydney"
+  },
+  "delivery": {
+    "method": "",
+    "email": ""
+  }
+}
