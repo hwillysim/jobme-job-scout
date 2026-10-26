@@ -10,28 +10,34 @@ time you use it.
 - **Anything else** (for example "run my job scout", "change my profile" or "why did this job score so high?"): see
   **After setup**.
 
-**Which route they're on** (SETUP.md explains both):
+You're in a cloud session on the person's private GitHub copy of Job Scout. They are **not** software developers.
+They made a GitHub account only for this and don't know what a repository, commit, branch or pull request is.
 
-- **Route A (cloud):** you're in a cloud session on their private GitHub copy. `git rev-parse` succeeds. Save state
-  with commits pushed to main.
-- **Route B (their computer):** you're working in a folder they downloaded. It isn't a git repository, so skip every
-  git step. Everything is saved in the folder itself.
+- **Save quietly.** Whenever these instructions say "save", commit the files and push to main
+  (`git push origin HEAD:main`). Tell them in plain words, such as "I've saved your profile to your Job Scout copy."
+- **No jargon.** Don't say repository, repo, commit, push, pull, branch, merge, PR or diff. Say "your Job Scout copy"
+  or "your private copy on GitHub". Don't show git output.
+- **Never open a pull request** and never ask them to review or merge anything. If a push to main is refused, push
+  to your session's own branch, merge it into main yourself if your tools allow it, and otherwise say in one plain
+  sentence that the save didn't work and to start a new session and say "continue setup".
 
 ## Ground rules
 
-- **Never ask for the JEV API key in the chat**, and never print, read out, copy or commit it. On route A it lives in
-  the cloud environment's settings. On route B it lives in `jev_key.txt`: don't open or display that file. Use
+- **Never ask for the JEV API key in the chat**, and never print, read out, copy or commit it, and never write it into
+  a file, even if they offer. It lives in the cloud environment's settings (or the `JEV_API_KEY` environment
+  variable in Codex). Use
   `python3 job_scout.py check` to test it. If the person pastes the key into the chat anyway, don't repeat it. Ask
   them to tell Henry so he can replace it, and walk them through saving it properly.
 - **Keep personal details out of the profile.** `profile.json` must not contain their name, email, phone number,
   street address, date of birth, LinkedIn or other links, or referees. When working from a resume, leave those out.
   A general location such as "Sydney, hybrid" is fine. `job_scout.py` also removes these before anything goes to
   JEV, but don't rely on that.
-- Don't save the resume file itself. On route A, ask them early to confirm their GitHub copy is **Private**. If it
-  isn't, ask them to change it (repository **Settings**, then **Danger zone**, then **Change visibility**) before you
-  save anything about them.
+- Don't save the resume file itself. Early on, check their GitHub copy is **Private** (with your GitHub tools if you
+  have them, otherwise ask them to look for the word **Private** next to its name on GitHub). If it isn't, walk them
+  through changing it before you save anything about them: open their copy on github.com, tap **Settings**, scroll
+  to **Danger Zone**, tap **Change visibility**, then **Make private**.
 - Never apply for jobs, contact employers or recruiters, or send anything anywhere except JEV calls made by
-  `job_scout.py`, pushes to their own repository (route A), and, if they choose it, one email per run from the
+  `job_scout.py`, saves to their own Job Scout copy, and, if they choose it, one email per run from the
   person to themselves.
 - Ask one or two questions at a time and wait for the answers. Don't send long walls of text.
 
@@ -51,10 +57,10 @@ Explain briefly, in your own words:
   match score out of 100. Roles at or above 65% that they haven't seen before make the shortlist, up to 12 per run.
   For each one, you write a short note on why it fits, any gaps, and whether it's worth applying.
 - **Personal information:** summarise [PRIVACY.md](PRIVACY.md) in three or four lines.
-  - What they tell you stays in their own copy of Job Scout and in this chat.
+  - What they tell you stays in their own private copy of Job Scout and in this chat.
   - JEV gets their profile without their name or contact details, one job at a time.
   - Email only happens if they choose it, and goes from them to themselves.
-  - Nothing is sent to Henry.
+  - Nothing is sent to Henry, and he can't see what goes to JEV.
 
   Offer to describe past employers in general terms ("a big four bank") if they'd like even less to be
   identifiable.
@@ -113,32 +119,28 @@ Show them this table with the weights from `config.json` as percentages, and exp
 
 ### 5. Connect JEV (the API key) and check access
 
-On route B, first check that `python3 --version` works. If it doesn't, help them install Python 3. On a Mac, running
-`python3` usually offers to install it. On Windows, use python.org or the Microsoft Store.
-
 Run `python3 job_scout.py check`.
 
 - If both lines say "working", tell them and move on.
-- If JEV isn't working, the key hasn't been saved yet (or has a typo). Walk them through the key steps in SETUP.md
-  for their route and app, one small step at a time, starting with "About the API key". Route A Claude is step A3,
-  "In Claude". Route A Codex is step A3, "In Codex". Route B is step B2. Run `check` again once they're done. In
+- If JEV isn't working, the key hasn't been saved yet (or has a typo). Walk them through step 4 of SETUP.md for their
+  app ("In Claude" or "In Codex"), one small step at a time, starting with what an API key is. Run `check` again once
+  they're done. In
   Claude's cloud the change works in the same session within a minute or two. In Codex, environment variables only
   reach new tasks, so they'll need to start a new task and say "continue setup".
-- If the job boards or JEV can't be reached at all, internet access needs switching on. On route A, that's
-  **Network access: Full** in Claude, or **Agent internet access: On, All (unrestricted), all HTTP methods** in
-  Codex (SETUP.md step A3). On route B, check that their computer is online.
+- If the job boards or JEV can't be reached at all, internet access needs switching on: **Network access: Full** in
+  Claude, or **Agent internet access: On, All (unrestricted), all HTTP methods** in Codex (SETUP.md step 4).
 
 ### 6. First scout
 
-On route A, commit and push `profile.json` and `config.json` to main (`git push origin HEAD:main`). Then run `python3
-job_scout.py run`. The first run scores a few thousand roles, so tell them it takes about 20 to 40 minutes. On route
-A they can close the app and come back. On route B the computer has to stay on. Skip the web search this first time.
+Save `profile.json` and `config.json`. Then run `python3 job_scout.py run`. The first run scores a few thousand
+roles, so tell them it takes about 20 to 40 minutes and they can close the app and come back. Skip the web search
+this first time.
 When it finishes:
 
 - Show the top matches from `reports/YYYY-MM-DD.md` as ROUTINE.md step 6 describes. For each one, give the two or
   three ratings that pushed it up (from the report's "JEV dimensions" line) and connect them to the weights, so they
   can see why it scored highly.
-- On route A, commit and push `data`, `reports` and `sources.json` to main.
+- Save `data`, `reports` and `sources.json`.
 
 ### 7. Choose the schedule
 
@@ -146,42 +148,36 @@ Ask which days and what time they'd like a fresh shortlist. Suggest Monday and W
 choice. Remind them that each run uses some of their Claude or ChatGPT plan. Save it under `schedule` in
 `config.json`, then set it up with them following SETUP.md:
 
-- **Route A, Claude (step A5):** a routine at claude.ai/code/routines. You can't create one from inside a cloud
+- **Claude (SETUP.md step 6):** a routine at claude.ai/code/routines. You can't create one from inside a cloud
   session. Tell them exactly what goes in each field: the name "Job Scout", the prompt (all of ROUTINE.md), the
-  model they chose, this repository, their Job Scout environment, and their days and time. Suggest a time a few
-  minutes past the hour, such as 7:37.
-- **Route B, Claude (step B4):** a local routine in the desktop app (**Code → Routines → New routine → Local**),
-  with ROUTINE.md as the instructions and this folder. If your tools let you create a scheduled task, offer to create
-  it for them. Ask them to tap **Run now** once and choose **Always allow** for each permission, so later runs don't
-  stop. Remind them it only runs while the computer is on, awake and the app is open.
-- **Codex (either route):** if Codex offers scheduled tasks (automations) on their plan, set one up with ROUTINE.md
+  model they chose, **job-scout** as the repository, their Job Scout environment, and their days and time. Suggest a
+  time a few minutes past the hour, such as 7:37. Show ROUTINE.md in a code block so they can copy it in one go.
+- **Codex:** if Codex offers scheduled tasks (automations) on their plan, set one up with ROUTINE.md
   as the prompt. If it doesn't, or it only runs while their computer is on, explain that and tell them they can say
   "run my job scout" whenever they want a fresh shortlist.
 
 ### 8. How they'll hear about it
 
-Ask whether they'd like **an email to themselves** after each run, or **just a notification in the app**. On route B,
-recommend email if they want results on their phone.
+Ask whether they'd like **an email to themselves** after each run, or **just a notification in the app**.
 
 - **Email (Claude):** the run emails the shortlist from their own Gmail to their own Gmail address. They connect
-  Gmail once at claude.ai/customize/connectors. On route A they also leave Gmail ticked under **Connectors** in the
+  Gmail once at claude.ai/customize/connectors, and leave Gmail ticked under **Connectors** in the
   routine. Save `"delivery": {"method": "email", "email": "<their address>"}` in `config.json`. Their email address
   lives only in `config.json`, never in `profile.json`, so it never goes to JEV.
 - **In the app:** each run appears as a new session (or Codex task). Remind them to **turn on notifications** for
   the Claude or ChatGPT app, using the steps in the "Email or notification" section of SETUP.md. Save
   `"delivery": {"method": "app"}`.
 
-On route A, commit and push `config.json`. Finish with a short wrap-up: when the first scheduled run is, how they'll
+Save `config.json`. Finish with a short wrap-up: when the first scheduled run is, how they'll
 hear about it, and the "after setup" things they can ask.
 
 ## After setup
 
 - **"Run my job scout":** follow ROUTINE.md, but skip the email step unless they ask for it.
-- **"Change my profile / weights / schedule / how I get it":** update `profile.json` or `config.json` (on route A,
-  commit and push). A schedule change also has to be made in the routine or automation itself, so tell them what to
+- **"Change my profile / weights / schedule / how I get it":** update `profile.json` or `config.json` and save. A schedule change also has to be made in the routine or automation itself, so tell them what to
   change there.
 - **"Why did this job score X?":** find the role in the latest `reports/*-all-assessed.csv` (by company and title).
   Explain each rating, the weights, and any yes/no check that came close.
 - **"I applied for / I'm not interested in this one":** run `python3 job_scout.py dismiss JOB_ID` so it doesn't come
-  back (on route A, commit and push).
+  back, and save.
 - **"What do you know about me / what does JEV see?":** show `profile.json` and point them to PRIVACY.md.

@@ -557,15 +557,9 @@ def discover(names: list[str], careers_urls: list[str]) -> int:
 
 
 # ---------------------------------------------------------------- JEV
-KEY_FILE = ROOT / "jev_key.txt"  # the on-your-computer route keeps the key here; .gitignore keeps it out of git
-
-
 def api_key(cfg) -> str:
-    """The JEV key from JEV_API_KEY or jev_key.txt, or "" when Claude's cloud adds it to requests itself."""
-    key = os.getenv("JEV_API_KEY") or os.getenv("TYPESAFE_API_KEY")
-    if not key and KEY_FILE.is_file():
-        key = KEY_FILE.read_text(encoding="utf-8-sig").strip()
-    return key or ""
+    """The JEV key from JEV_API_KEY (Codex), or "" when Claude's cloud adds it to requests itself."""
+    return os.getenv("JEV_API_KEY") or os.getenv("TYPESAFE_API_KEY") or ""
 
 
 # Personal details never go to JEV: only what it needs to judge fit. Fields that identify someone are dropped,
@@ -672,7 +666,7 @@ def assess_new(c: sqlite3.Connection, cfg, profile, todo, key) -> int:
     try:  # preflight so a bad key or network fails fast
         results = [one(first)]
     except Exception as e:
-        hint = "" if key else " (no key sent: check the JEV key is saved as SETUP.md describes for your route)"
+        hint = "" if key else " (no key sent: check the JEV key is saved as SETUP.md step 4 describes)"
         sys.exit(f"JEV preflight failed: {e}{hint}")
     with ThreadPoolExecutor(cfg["jev_workers"]) as pool:
         futures = {pool.submit(one, j): j for j in rest}
@@ -925,16 +919,16 @@ def check() -> int:
         print(f"JEV: not working ({str(e)[:160]}).")
         if "connection failed" in str(e):
             print("  This session can't reach JEV at all, so its internet access needs changing. "
-                  "See the API key steps for your route in SETUP.md.")
+                  "See step 4 of SETUP.md.")
         else:
-            print("  Most likely the API key isn't saved yet, or was pasted with a typo. See the API key steps for your route in SETUP.md.")
+            print("  Most likely the API key isn't saved yet, or was pasted with a typo. See step 4 of SETUP.md.")
     try:
         n = len(list(fetch_greenhouse({"token": "airwallex", "company": "Airwallex"})))
         print(f"Job boards: working (a test board returned {n} roles).")
     except Exception as e:
         ok = False
         print(f"Job boards: not reachable ({str(e)[:160]}).")
-        print("  Internet access needs switching on fully. See the API key steps for your route in SETUP.md.")
+        print("  Internet access needs switching on fully. See step 4 of SETUP.md.")
     return 0 if ok else 1
 
 

@@ -133,20 +133,6 @@ class Tests(unittest.TestCase):
         for kept in ("Ops lead", "2018-2020", "$25m", "8 staff", "Sydney, hybrid", "kept"):
             self.assertIn(kept, sent)
 
-    def test_key_file_is_read_and_never_committed(self):
-        import os
-        orig, env = js.KEY_FILE, {k: os.environ.pop(k) for k in ("JEV_API_KEY", "TYPESAFE_API_KEY") if k in os.environ}
-        try:
-            with tempfile.TemporaryDirectory() as d:
-                js.KEY_FILE = pathlib.Path(d) / "jev_key.txt"
-                self.assertEqual(js.api_key({}), "")
-                js.KEY_FILE.write_text("\ufeffabc123\n", encoding="utf-8")  # a Notepad BOM and a trailing newline
-                self.assertEqual(js.api_key({}), "abc123")
-        finally:
-            js.KEY_FILE = orig
-            os.environ.update(env)
-        self.assertIn("jev_key.txt", (js.ROOT / ".gitignore").read_text().split())
-
 
 if __name__ == "__main__":
     unittest.main()

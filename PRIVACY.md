@@ -6,10 +6,10 @@ information goes.
 | Where | What it gets | Why |
 | --- | --- | --- |
 | **Your AI app** (Claude or ChatGPT) | Whatever you share in the chat: your resume, your answers, your profile and the job ads it finds. | The agent reads these to build your profile and write the notes on each job. Your plan's usual privacy settings apply. |
-| **Your copy of Job Scout** (a private GitHub copy, or a folder on your computer) | `profile.json` (a summary of your background and goals), your settings, the jobs found and your shortlists. | So each run remembers what you've already seen. Your resume file itself is never saved here. |
+| **Your copy of Job Scout** (your private copy on GitHub) | `profile.json` (a summary of your background and goals), your settings, the jobs found and your shortlists. | So each run remembers what you've already seen. Your resume file itself is never saved here. |
 | **JEV** (the scoring service run by TypeSafe) | Your profile **without** your name or contact details, plus one job ad at a time. | To rate how well each job fits you. |
 | **Gmail** (only if you choose email) | The shortlist email, sent from your own Gmail to yourself. | So the shortlist reaches your phone. The scout doesn't read your inbox. |
-| **Henry** | Nothing is sent to him. Requests to JEV use his key, so they're recorded against his TypeSafe account. | He shares the key so you don't need your own. |
+| **Henry** | Nothing. Requests to JEV use his key, so they count towards his TypeSafe account, but he can't see what's in them: not your profile, and not the jobs. He also has no access to your private GitHub copy. | He shares the key so you don't need your own. |
 
 ## What's kept out of JEV
 
@@ -24,6 +24,6 @@ information goes.
 
 ## Removing your information
 
-- Delete your GitHub copy (repository **Settings**, then **Danger zone**, then **Delete this repository**), or
-  delete the folder on your computer.
+- Delete your Job Scout copy on GitHub: open it, tap **Settings**, scroll to **Danger Zone**, then tap **Delete this
+  repository**. You can also delete your whole GitHub account under your profile picture, **Settings**, **Account**.
 - Delete the scheduled run, and any chats about Job Scout, in your AI app.
