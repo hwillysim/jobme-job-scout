@@ -632,14 +632,14 @@
     "token": "shopmy"
   },
   {
-    "company": "hcf.wd105.myworkdayjobs.com",
+    "company": "HCF",
     "ats": "workday",
     "host": "hcf.wd105.myworkdayjobs.com",
     "tenant": "hcf",
     "site": "HCF_External_Career_Site"
   },
   {
-    "company": "aia.wd3.myworkdayjobs.com",
+    "company": "AIA",
     "ats": "workday",
     "host": "aia.wd3.myworkdayjobs.com",
     "tenant": "aia",
@@ -726,11 +726,6 @@
     "token": "scentregroup"
   },
   {
-    "company": "Australia Climate Impact Initiative (via Johnson Recruitment)",
-    "ats": "greenhouse",
-    "token": "australia"
-  },
-  {
     "company": "Coinbase",
     "ats": "greenhouse",
     "token": "coinbase"
@@ -754,11 +749,6 @@
     "company": "ElevenLabs",
     "ats": "ashby",
     "token": "elevenlabs"
-  },
-  {
-    "company": "Jobgether (partner company)",
-    "ats": "lever",
-    "token": "jobgether"
   },
   {
     "company": "Mitti (formerly SafetyCulture)",
@@ -804,11 +794,6 @@
     "company": "GitLab",
     "ats": "greenhouse",
     "token": "gitlab"
-  },
-  {
-    "company": "Impact Advising (for ChildFund Australia)",
-    "ats": "greenhouse",
-    "token": "impact"
   },
   {
     "company": "LogicMonitor",
