@@ -1,0 +1,845 @@
+[
+  {
+    "company": "Stripe",
+    "ats": "greenhouse",
+    "token": "stripe"
+  },
+  {
+    "company": "Block (Afterpay, Square)",
+    "ats": "greenhouse",
+    "token": "block"
+  },
+  {
+    "company": "Culture Amp",
+    "ats": "greenhouse",
+    "token": "cultureamp"
+  },
+  {
+    "company": "Adyen",
+    "ats": "greenhouse",
+    "token": "adyen"
+  },
+  {
+    "company": "Anthropic",
+    "ats": "greenhouse",
+    "token": "anthropic"
+  },
+  {
+    "company": "Prospa",
+    "ats": "greenhouse",
+    "token": "prospa"
+  },
+  {
+    "company": "Spaceship",
+    "ats": "greenhouse",
+    "token": "spaceship"
+  },
+  {
+    "company": "Constantinople",
+    "ats": "lever",
+    "token": "cxnpl"
+  },
+  {
+    "company": "Brighte",
+    "ats": "lever",
+    "token": "brighte"
+  },
+  {
+    "company": "PEXA",
+    "ats": "lever",
+    "token": "pexa"
+  },
+  {
+    "company": "Immutable",
+    "ats": "lever",
+    "token": "immutable"
+  },
+  {
+    "company": "Deputy",
+    "ats": "lever",
+    "token": "deputy"
+  },
+  {
+    "company": "Mable",
+    "ats": "lever",
+    "token": "mable"
+  },
+  {
+    "company": "Plenti",
+    "ats": "lever",
+    "token": "plenti"
+  },
+  {
+    "company": "Wisr",
+    "ats": "lever",
+    "token": "wisr"
+  },
+  {
+    "company": "Nium",
+    "ats": "lever",
+    "token": "nium"
+  },
+  {
+    "company": "Airwallex",
+    "ats": "ashby",
+    "token": "airwallex"
+  },
+  {
+    "company": "Zip",
+    "ats": "ashby",
+    "token": "zip"
+  },
+  {
+    "company": "Xero",
+    "ats": "ashby",
+    "token": "xero"
+  },
+  {
+    "company": "OpenAI",
+    "ats": "ashby",
+    "token": "openai"
+  },
+  {
+    "company": "Plaid",
+    "ats": "ashby",
+    "token": "plaid"
+  },
+  {
+    "company": "Ramp",
+    "ats": "ashby",
+    "token": "ramp"
+  },
+  {
+    "company": "Up",
+    "ats": "ashby",
+    "token": "up"
+  },
+  {
+    "company": "Canva",
+    "ats": "smartrecruiters",
+    "token": "canva"
+  },
+  {
+    "company": "Judo Bank",
+    "ats": "smartrecruiters",
+    "token": "judobank"
+  },
+  {
+    "company": "Wise",
+    "ats": "smartrecruiters",
+    "token": "wise"
+  },
+  {
+    "company": "CoinJar",
+    "ats": "smartrecruiters",
+    "token": "coinjar"
+  },
+  {
+    "company": "Airbnb",
+    "ats": "greenhouse",
+    "token": "airbnb"
+  },
+  {
+    "company": "Athena Home Loans",
+    "ats": "bamboohr",
+    "token": "athena"
+  },
+  {
+    "company": "Australian Ethical",
+    "ats": "lever",
+    "token": "australianethical"
+  },
+  {
+    "company": "Autograb",
+    "ats": "bamboohr",
+    "token": "autograb"
+  },
+  {
+    "company": "Bizcap",
+    "ats": "bamboohr",
+    "token": "bizcap"
+  },
+  {
+    "company": "Carsales",
+    "ats": "smartrecruiters",
+    "token": "carsales"
+  },
+  {
+    "company": "Cloudflare",
+    "ats": "greenhouse",
+    "token": "cloudflare"
+  },
+  {
+    "company": "Cohere",
+    "ats": "ashby",
+    "token": "cohere"
+  },
+  {
+    "company": "Databricks",
+    "ats": "greenhouse",
+    "token": "databricks"
+  },
+  {
+    "company": "Datadog",
+    "ats": "greenhouse",
+    "token": "datadog"
+  },
+  {
+    "company": "Deliveroo",
+    "ats": "greenhouse",
+    "token": "deliveroo"
+  },
+  {
+    "company": "DoorDash",
+    "ats": "greenhouse",
+    "token": "doordashaustralia"
+  },
+  {
+    "company": "Dropbox",
+    "ats": "greenhouse",
+    "token": "dropbox"
+  },
+  {
+    "company": "Elastic",
+    "ats": "greenhouse",
+    "token": "elastic"
+  },
+  {
+    "company": "Eucalyptus",
+    "ats": "greenhouse",
+    "token": "eucalyptus"
+  },
+  {
+    "company": "Experian",
+    "ats": "smartrecruiters",
+    "token": "experian"
+  },
+  {
+    "company": "Figma",
+    "ats": "greenhouse",
+    "token": "figma"
+  },
+  {
+    "company": "Fivetran",
+    "ats": "greenhouse",
+    "token": "fivetran"
+  },
+  {
+    "company": "Go1",
+    "ats": "greenhouse",
+    "token": "go1au"
+  },
+  {
+    "company": "Goodman",
+    "ats": "greenhouse",
+    "token": "goodmanau"
+  },
+  {
+    "company": "Harvey (legal AI)",
+    "ats": "ashby",
+    "token": "harvey"
+  },
+  {
+    "company": "Hello Fresh",
+    "ats": "greenhouse",
+    "token": "hellofresh"
+  },
+  {
+    "company": "Intercom",
+    "ats": "greenhouse",
+    "token": "intercom"
+  },
+  {
+    "company": "KPMG",
+    "ats": "smartrecruiters",
+    "token": "kpmgaustralia"
+  },
+  {
+    "company": "Kin Fertility",
+    "ats": "ashby",
+    "token": "kin"
+  },
+  {
+    "company": "Kogan",
+    "ats": "lever",
+    "token": "kogan"
+  },
+  {
+    "company": "Liven",
+    "ats": "ashby",
+    "token": "liven"
+  },
+  {
+    "company": "Lorikeet",
+    "ats": "ashby",
+    "token": "lorikeet"
+  },
+  {
+    "company": "Lumi",
+    "ats": "smartrecruiters",
+    "token": "lumi"
+  },
+  {
+    "company": "Mable",
+    "ats": "smartrecruiters",
+    "token": "mable"
+  },
+  {
+    "company": "Megaport",
+    "ats": "lever",
+    "token": "megaport"
+  },
+  {
+    "company": "MongoDB",
+    "ats": "greenhouse",
+    "token": "mongodb"
+  },
+  {
+    "company": "Neara",
+    "ats": "ashby",
+    "token": "neara"
+  },
+  {
+    "company": "Nearmap",
+    "ats": "smartrecruiters",
+    "token": "nearmap"
+  },
+  {
+    "company": "Netwealth",
+    "ats": "ashby",
+    "token": "netwealth"
+  },
+  {
+    "company": "Notion",
+    "ats": "ashby",
+    "token": "notion"
+  },
+  {
+    "company": "Nous Group",
+    "ats": "greenhouse",
+    "token": "nousgroup"
+  },
+  {
+    "company": "Novatti",
+    "ats": "breezy",
+    "token": "novatti"
+  },
+  {
+    "company": "Okta",
+    "ats": "greenhouse",
+    "token": "okta"
+  },
+  {
+    "company": "PEXA",
+    "ats": "smartrecruiters",
+    "token": "pexa"
+  },
+  {
+    "company": "Q-CTRL",
+    "ats": "lever",
+    "token": "q-ctrl"
+  },
+  {
+    "company": "Relevance AI",
+    "ats": "ashby",
+    "token": "relevanceai"
+  },
+  {
+    "company": "SEEK",
+    "ats": "smartrecruiters",
+    "token": "seek"
+  },
+  {
+    "company": "SEEK",
+    "ats": "bamboohr",
+    "token": "seek"
+  },
+  {
+    "company": "ServiceNow",
+    "ats": "smartrecruiters",
+    "token": "servicenow"
+  },
+  {
+    "company": "Shift",
+    "ats": "ashby",
+    "token": "shift"
+  },
+  {
+    "company": "Siteminder",
+    "ats": "ashby",
+    "token": "siteminder"
+  },
+  {
+    "company": "Siteminder",
+    "ats": "smartrecruiters",
+    "token": "siteminder"
+  },
+  {
+    "company": "Snowflake",
+    "ats": "ashby",
+    "token": "snowflake"
+  },
+  {
+    "company": "Splend",
+    "ats": "lever",
+    "token": "splend"
+  },
+  {
+    "company": "Stake",
+    "ats": "breezy",
+    "token": "stake"
+  },
+  {
+    "company": "Supabase",
+    "ats": "ashby",
+    "token": "supabase"
+  },
+  {
+    "company": "TAL",
+    "ats": "smartrecruiters",
+    "token": "tal"
+  },
+  {
+    "company": "The Iconic",
+    "ats": "greenhouse",
+    "token": "theiconic"
+  },
+  {
+    "company": "Twilio",
+    "ats": "greenhouse",
+    "token": "twilio"
+  },
+  {
+    "company": "Vercel",
+    "ats": "greenhouse",
+    "token": "vercel"
+  },
+  {
+    "company": "Who Gives A Crap",
+    "ats": "greenhouse",
+    "token": "whogivesacrap"
+  },
+  {
+    "company": "Windcave",
+    "ats": "bamboohr",
+    "token": "windcave"
+  },
+  {
+    "company": "Zepto",
+    "ats": "bamboohr",
+    "token": "zepto"
+  },
+  {
+    "company": "Commonwealth Bank",
+    "ats": "workday",
+    "host": "cba.wd3.myworkdayjobs.com",
+    "tenant": "cba",
+    "site": "CommBank_Careers"
+  },
+  {
+    "company": "Telstra",
+    "ats": "workday",
+    "host": "telstra.wd3.myworkdayjobs.com",
+    "tenant": "telstra",
+    "site": "Telstra_Careers"
+  },
+  {
+    "company": "Latitude Financial",
+    "ats": "workday",
+    "host": "latitudefinancial.wd3.myworkdayjobs.com",
+    "tenant": "latitudefinancial",
+    "site": "careers"
+  },
+  {
+    "company": "Challenger",
+    "ats": "workday",
+    "host": "challenger.wd3.myworkdayjobs.com",
+    "tenant": "challenger",
+    "site": "Challenger_Careers"
+  },
+  {
+    "company": "Bank of Queensland",
+    "ats": "workday",
+    "host": "boq.wd3.myworkdayjobs.com",
+    "tenant": "boq",
+    "site": "Careers-at-BOQGroup"
+  },
+  {
+    "company": "AGL",
+    "ats": "workday",
+    "host": "agl.wd3.myworkdayjobs.com",
+    "tenant": "agl",
+    "site": "AGL_Recruitment"
+  },
+  {
+    "company": "Transurban",
+    "ats": "workday",
+    "host": "transurban.wd3.myworkdayjobs.com",
+    "tenant": "transurban",
+    "site": "TU_AU"
+  },
+  {
+    "company": "Lendlease",
+    "ats": "workday",
+    "host": "lendlease.wd3.myworkdayjobs.com",
+    "tenant": "lendlease",
+    "site": "lendleasecareers"
+  },
+  {
+    "company": "nbn",
+    "ats": "workday",
+    "host": "nbn.wd3.myworkdayjobs.com",
+    "tenant": "nbn",
+    "site": "nbncareers"
+  },
+  {
+    "company": "ASX",
+    "ats": "workday",
+    "host": "asx.wd105.myworkdayjobs.com",
+    "tenant": "asx",
+    "site": "ASX_Careers"
+  },
+  {
+    "company": "nib",
+    "ats": "workday",
+    "host": "nib.wd105.myworkdayjobs.com",
+    "tenant": "nib",
+    "site": "careers"
+  },
+  {
+    "company": "Westpac",
+    "ats": "oracle",
+    "host": "ebuu.fa.ap1.oraclecloud.com",
+    "site": "CX"
+  },
+  {
+    "company": "AMP",
+    "ats": "oracle",
+    "host": "fa-esow-saasfaprod1.fa.ocs.oraclecloud.com",
+    "site": "CX_1"
+  },
+  {
+    "company": "ANZ",
+    "ats": "sitemap",
+    "sitemap": "https://careers.anz.com/sitemap.xml",
+    "job_pattern": "/job/"
+  },
+  {
+    "company": "IAG",
+    "ats": "sitemap",
+    "sitemap": "https://careers.iag.com.au/sitemap.xml",
+    "job_pattern": "/job/"
+  },
+  {
+    "company": "Optus",
+    "ats": "sitemap",
+    "sitemap": "https://careers.optus.com.au/sitemap.xml",
+    "job_pattern": "/job/"
+  },
+  {
+    "company": "Atlassian",
+    "ats": "atlassian",
+    "token": "atlassian"
+  },
+  {
+    "company": "Rokt",
+    "ats": "workable",
+    "token": "rokt"
+  },
+  {
+    "company": "Cognition",
+    "ats": "ashby",
+    "token": "cognition"
+  },
+  {
+    "company": "Enero Group (Orchard)",
+    "ats": "smartrecruiters",
+    "token": "enero"
+  },
+  {
+    "company": "Haast",
+    "ats": "ashby",
+    "token": "haast"
+  },
+  {
+    "company": "Klaviyo",
+    "ats": "greenhouse",
+    "token": "klaviyo"
+  },
+  {
+    "company": "Mixpanel",
+    "ats": "greenhouse",
+    "token": "mixpanel"
+  },
+  {
+    "company": "OKX",
+    "ats": "greenhouse",
+    "token": "okx"
+  },
+  {
+    "company": "Quantium",
+    "ats": "greenhouse",
+    "token": "quantium"
+  },
+  {
+    "company": "Sonder",
+    "ats": "greenhouse",
+    "token": "sonderaustralia"
+  },
+  {
+    "company": "Sonder",
+    "ats": "smartrecruiters",
+    "token": "sonderaustralia"
+  },
+  {
+    "company": "The Trade Desk",
+    "ats": "greenhouse",
+    "token": "thetradedesk"
+  },
+  {
+    "company": "Thunes",
+    "ats": "greenhouse",
+    "token": "thunes"
+  },
+  {
+    "company": "Zip Co",
+    "ats": "greenhouse",
+    "token": "zipcolimited"
+  },
+  {
+    "company": "Alloy",
+    "ats": "greenhouse",
+    "token": "alloy"
+  },
+  {
+    "company": "Bapcor",
+    "ats": "smartrecruiters",
+    "token": "bapcor"
+  },
+  {
+    "company": "CreditorWatch",
+    "ats": "workable",
+    "token": "creditorwatch"
+  },
+  {
+    "company": "Repeat Builders",
+    "ats": "ashby",
+    "token": "repeatbuilders"
+  },
+  {
+    "company": "ShopMy",
+    "ats": "greenhouse",
+    "token": "shopmy"
+  },
+  {
+    "company": "hcf.wd105.myworkdayjobs.com",
+    "ats": "workday",
+    "host": "hcf.wd105.myworkdayjobs.com",
+    "tenant": "hcf",
+    "site": "HCF_External_Career_Site"
+  },
+  {
+    "company": "aia.wd3.myworkdayjobs.com",
+    "ats": "workday",
+    "host": "aia.wd3.myworkdayjobs.com",
+    "tenant": "aia",
+    "site": "External"
+  },
+  {
+    "company": "hipages",
+    "ats": "greenhouse",
+    "token": "hipagesgroup"
+  },
+  {
+    "company": "Blinq",
+    "ats": "lever",
+    "token": "blinq"
+  },
+  {
+    "company": "Buildkite",
+    "ats": "greenhouse",
+    "token": "buildkite"
+  },
+  {
+    "company": "Coates Group",
+    "ats": "lever",
+    "token": "coatesgroup"
+  },
+  {
+    "company": "Crypto.com",
+    "ats": "lever",
+    "token": "crypto"
+  },
+  {
+    "company": "Dovetail",
+    "ats": "ashby",
+    "token": "dovetail"
+  },
+  {
+    "company": "Ebury",
+    "ats": "greenhouse",
+    "token": "ebury"
+  },
+  {
+    "company": "Sitemate",
+    "ats": "ashby",
+    "token": "sitemate"
+  },
+  {
+    "company": "UpGuard",
+    "ats": "ashby",
+    "token": "upguard"
+  },
+  {
+    "company": "TMGM",
+    "ats": "workable",
+    "token": "tmgm"
+  },
+  {
+    "company": "Australian Payments Plus",
+    "ats": "workable",
+    "token": "auspayplus"
+  },
+  {
+    "company": "Lightspeed Commerce",
+    "ats": "ashby",
+    "token": "lightspeedhq"
+  },
+  {
+    "company": "Beyond Bank Australia",
+    "ats": "smartrecruiters",
+    "token": "beyondbankaustralia"
+  },
+  {
+    "company": "FareHarbor",
+    "ats": "greenhouse",
+    "token": "fareharbor"
+  },
+  {
+    "company": "Marloo",
+    "ats": "ashby",
+    "token": "marloo"
+  },
+  {
+    "company": "Scentre Group",
+    "ats": "smartrecruiters",
+    "token": "scentregroup"
+  },
+  {
+    "company": "Australia Climate Impact Initiative (via Johnson Recruitment)",
+    "ats": "greenhouse",
+    "token": "australia"
+  },
+  {
+    "company": "Coinbase",
+    "ats": "greenhouse",
+    "token": "coinbase"
+  },
+  {
+    "company": "Linear",
+    "ats": "ashby",
+    "token": "linear"
+  },
+  {
+    "company": "Splose",
+    "ats": "ashby",
+    "token": "splose"
+  },
+  {
+    "company": "Decagon",
+    "ats": "ashby",
+    "token": "decagon"
+  },
+  {
+    "company": "ElevenLabs",
+    "ats": "ashby",
+    "token": "elevenlabs"
+  },
+  {
+    "company": "Jobgether (partner company)",
+    "ats": "lever",
+    "token": "jobgether"
+  },
+  {
+    "company": "Mitti (formerly SafetyCulture)",
+    "ats": "ashby",
+    "token": "mitti"
+  },
+  {
+    "company": "Ripple",
+    "ats": "greenhouse",
+    "token": "ripple"
+  },
+  {
+    "company": "Sierra",
+    "ats": "ashby",
+    "token": "sierra"
+  },
+  {
+    "company": "TRA",
+    "ats": "workable",
+    "token": "tra-2"
+  },
+  {
+    "company": "Anaplan",
+    "ats": "greenhouse",
+    "token": "anaplan"
+  },
+  {
+    "company": "Atomi",
+    "ats": "lever",
+    "token": "atomi"
+  },
+  {
+    "company": "Autism Spectrum Australia (Aspect)",
+    "ats": "smartrecruiters",
+    "token": "autismspectrumaustraliaaspect"
+  },
+  {
+    "company": "Braze",
+    "ats": "greenhouse",
+    "token": "braze"
+  },
+  {
+    "company": "GitLab",
+    "ats": "greenhouse",
+    "token": "gitlab"
+  },
+  {
+    "company": "Impact Advising (for ChildFund Australia)",
+    "ats": "greenhouse",
+    "token": "impact"
+  },
+  {
+    "company": "LogicMonitor",
+    "ats": "greenhouse",
+    "token": "logicmonitor"
+  },
+  {
+    "company": "Pinterest",
+    "ats": "greenhouse",
+    "token": "pinterest"
+  },
+  {
+    "company": "Smartsheet",
+    "ats": "greenhouse",
+    "token": "smartsheet"
+  },
+  {
+    "company": "Tracksuit",
+    "ats": "ashby",
+    "token": "tracksuit"
+  },
+  {
+    "company": "TAL",
+    "ats": "workday",
+    "host": "tal.wd3.myworkdayjobs.com",
+    "tenant": "tal",
+    "site": "TAL-current-opportunities"
+  },
+  {
+    "company": "Intellihub",
+    "ats": "smartrecruiters",
+    "token": "Intellihub1"
+  }
+]
