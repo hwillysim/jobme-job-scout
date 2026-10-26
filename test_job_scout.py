@@ -80,7 +80,7 @@ class Tests(unittest.TestCase):
             js.call_jev = offline
             with redirect_stdout(io.StringIO()) as out:
                 self.assertEqual(js.check(), 1)
-            self.assertIn("network access", out.getvalue())
+            self.assertIn("internet access", out.getvalue())
         finally:
             js.call_jev, js.fetch_greenhouse = orig
 
@@ -119,6 +119,33 @@ class Tests(unittest.TestCase):
         c.execute("insert into jobs values('web:1','h1')")
         with redirect_stdout(io.StringIO()):
             self.assertEqual(js.dismiss(c, ["web:1"]), 1)
+
+    def test_no_personal_details_go_to_jev(self):
+        profile = {"name": "Jane Citizen", "email": "jane@example.com", "phone": "0412 345 678",
+                   "summary": "Ops lead. Contact jane.c@gmail.com, +61 412 345 678, linkedin.com/in/janec, https://jane.dev",
+                   "experience": ["Team Leader, a big four bank (2018-2020): $25m in savings, 8 staff, (02) 9876 5432"],
+                   "location": "Sydney, hybrid", "extra": {"referees": "Bob 0400 000 000", "note": "kept"}}
+        job = {"company": "Acme", "title": "Ops", "location": "Sydney", "description": "d"}
+        sent = json.dumps(js.payload(profile, job, js.load("config.json")))
+        for leak in ("Jane Citizen", "jane@example.com", "jane.c@gmail.com", "412 345 678", "linkedin.com", "jane.dev",
+                     "9876 5432", "Bob", "referees"):
+            self.assertNotIn(leak, sent)
+        for kept in ("Ops lead", "2018-2020", "$25m", "8 staff", "Sydney, hybrid", "kept"):
+            self.assertIn(kept, sent)
+
+    def test_key_file_is_read_and_never_committed(self):
+        import os
+        orig, env = js.KEY_FILE, {k: os.environ.pop(k) for k in ("JEV_API_KEY", "TYPESAFE_API_KEY") if k in os.environ}
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                js.KEY_FILE = pathlib.Path(d) / "jev_key.txt"
+                self.assertEqual(js.api_key({}), "")
+                js.KEY_FILE.write_text("\ufeffabc123\n", encoding="utf-8")  # a Notepad BOM and a trailing newline
+                self.assertEqual(js.api_key({}), "abc123")
+        finally:
+            js.KEY_FILE = orig
+            os.environ.update(env)
+        self.assertIn("jev_key.txt", (js.ROOT / ".gitignore").read_text().split())
 
 
 if __name__ == "__main__":

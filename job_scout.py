@@ -557,14 +557,48 @@ def discover(names: list[str], careers_urls: list[str]) -> int:
 
 
 # ---------------------------------------------------------------- JEV
+KEY_FILE = ROOT / "jev_key.txt"  # the on-your-computer route keeps the key here; .gitignore keeps it out of git
+
+
 def api_key(cfg) -> str:
-    """The JEV key from JEV_API_KEY (Codex, or a computer), or "" when Claude's cloud adds it to requests itself."""
-    return os.getenv("JEV_API_KEY") or os.getenv("TYPESAFE_API_KEY") or ""
+    """The JEV key from JEV_API_KEY or jev_key.txt, or "" when Claude's cloud adds it to requests itself."""
+    key = os.getenv("JEV_API_KEY") or os.getenv("TYPESAFE_API_KEY")
+    if not key and KEY_FILE.is_file():
+        key = KEY_FILE.read_text(encoding="utf-8-sig").strip()
+    return key or ""
+
+
+# Personal details never go to JEV: only what it needs to judge fit. Fields that identify someone are dropped,
+# and contact details that slip into free text (an email, phone number or profile link from a pasted resume) are
+# blanked out.
+PERSONAL_FIELDS = {"name", "first_name", "last_name", "full_name", "email", "phone", "mobile", "address",
+                   "linkedin", "website", "url", "date_of_birth", "dob", "age", "gender", "referees", "references"}
+_EMAIL = re.compile(r"[\w.+-]+@[\w-]+(\.[\w-]+)+")
+_URL = re.compile(r"(https?://|www\.)\S+|\b(linkedin|github)\.com/\S*", re.I)
+_PHONE = re.compile(r"(?<![\w$.])(\+\d[\d ()-]{7,}\d|\(?0\d[\d ()-]{6,}\d)(?![\w.])")  # +61 4.. or 04.., not years
+
+
+def scrub(text: str) -> str:
+    text = _EMAIL.sub("[email removed]", text)
+    text = _URL.sub("[link removed]", text)
+    return _PHONE.sub(lambda m: "[phone removed]" if 9 <= sum(ch.isdigit() for ch in m[1]) <= 15 else m[1], text)
+
+
+def jev_candidate(profile: dict) -> dict:
+    def clean(v):
+        if isinstance(v, str):
+            return scrub(v)
+        if isinstance(v, list):
+            return [clean(x) for x in v]
+        if isinstance(v, dict):
+            return {k: clean(x) for k, x in v.items() if k.lower() not in PERSONAL_FIELDS}
+        return v
+    return clean({k: v for k, v in profile.items() if k.lower() not in PERSONAL_FIELDS})
 
 
 def payload(profile: dict, job: sqlite3.Row, cfg) -> dict:
     return {"model": cfg["jev_model"],
-            "state": {"candidate": profile,
+            "state": {"candidate": jev_candidate(profile),
                       "job": {"company": job["company"], "title": job["title"], "location": job["location"],
                               "description": (job["description"] or "")[:6000]}},
             "questions": jev_questions(cfg)}
@@ -638,7 +672,7 @@ def assess_new(c: sqlite3.Connection, cfg, profile, todo, key) -> int:
     try:  # preflight so a bad key or network fails fast
         results = [one(first)]
     except Exception as e:
-        hint = "" if key else " (no key sent: check the JEV network secret for api.typesafe.ai in the cloud environment; SETUP.md step 4)"
+        hint = "" if key else " (no key sent: check the JEV key is saved as SETUP.md describes for your route)"
         sys.exit(f"JEV preflight failed: {e}{hint}")
     with ThreadPoolExecutor(cfg["jev_workers"]) as pool:
         futures = {pool.submit(one, j): j for j in rest}
@@ -890,18 +924,17 @@ def check() -> int:
         ok = False
         print(f"JEV: not working ({str(e)[:160]}).")
         if "connection failed" in str(e):
-            print("  This session can't reach JEV at all, so the cloud environment's network access needs changing. "
-                  "See SETUP.md step 4.")
+            print("  This session can't reach JEV at all, so its internet access needs changing. "
+                  "See the API key steps for your route in SETUP.md.")
         else:
-            print("  Most likely the API key isn't saved in this cloud environment yet, or was pasted with a typo. "
-                  "See SETUP.md step 4.")
+            print("  Most likely the API key isn't saved yet, or was pasted with a typo. See the API key steps for your route in SETUP.md.")
     try:
         n = len(list(fetch_greenhouse({"token": "airwallex", "company": "Airwallex"})))
         print(f"Job boards: working (a test board returned {n} roles).")
     except Exception as e:
         ok = False
         print(f"Job boards: not reachable ({str(e)[:160]}).")
-        print("  The cloud environment's network access needs to be Full. See SETUP.md step 4.")
+        print("  Internet access needs switching on fully. See the API key steps for your route in SETUP.md.")
     return 0 if ok else 1
 
 
